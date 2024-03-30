@@ -1,0 +1,27 @@
+import aiomysql
+from tornado import ioloop
+
+async def select_db():
+    pool = await aiomysql.create_pool(
+        host='127.0.0.1',
+        port=3306,
+        user='root',
+        password='',
+        db='ai_exercise'
+    )
+
+    async with pool.acquire() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute("select * from Class;")
+            # print(cur.description)
+            data = await cur.fetchone()
+            print(data)
+    pool.close()
+    await pool.wait_closed()
+
+
+if __name__ == "__main__":
+    ioloop.IOLoop.current().run_sync(select_db)
+
+
+

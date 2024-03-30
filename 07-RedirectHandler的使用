@@ -4,15 +4,19 @@ from tornado import ioloop
 
 class IndexHandler(web.RequestHandler):
     def get(self):
-        
+        self.write("hello123123123123123123")
 
+
+class LoginHandler(web.RequestHandler):
+    def get(self):
+        self.redirect('/')
 
 if __name__ == '__main__':
     app = web.Application([
         ("/", IndexHandler),
+        ("/login/?", LoginHandler)
 
     ], debug=True)
     app.listen(9999)
     # 开启事件循环
     ioloop.IOLoop.current().start()
-

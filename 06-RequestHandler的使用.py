@@ -32,7 +32,6 @@ class IndexHandler(web.RequestHandler):
         pass
 
     async def post(self):
-
         name = self.get_argument("q")
         names = self.get_arguments("q")
 
@@ -44,7 +43,6 @@ class IndexHandler(web.RequestHandler):
         print(name)
         print(names)
         pass
-
 
 
 if __name__ == '__main__':
